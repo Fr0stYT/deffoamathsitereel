@@ -1,1 +1,27 @@
+<div id="test"></div>
+
+<script>
+    // Instance address
+    const webrtcAddress = 'http://1.1.1.1';
+    const container = document.getElementById('genymotion');
+
+    // See "Features & options" section for more details about options
+    const options = {
+        template: "player",    // template defines how player is displayed
+        token: 'undefined', // token is the shared secret to connect to your VM
+        fileUpload: false      // requires fileUploadUrl
+    };
+
+    // Device player instanciation
+    const genymotion = new GenymotionManager();
+    const instance = genymotion.setupInstance(container,     // the container element or element ID to use
+                                              webrtcAddress, // the websocket address of your instance connector
+                                              options        // options object to enable or disable features
+    );
+
+    // Disconnect the device player, closing any open data channels.
+    window.addEventListener('beforeunload', function() {
+        instance.disconnect();
+    });
+</script>
 
